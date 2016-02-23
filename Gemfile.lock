@@ -227,7 +227,6 @@ DEPENDENCIES
   rack-cors
   rails (= 4.2.5.1)
   rails_12factor
-  rb-fsevent
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
