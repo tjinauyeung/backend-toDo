@@ -25,9 +25,14 @@ class TasksController < ApplicationController
   end
 
   def update
-    task=Task.find(params[:id])
+    if task=Task.find(params[:id])
     render json:{task: task.update(task_params)}
-
+    else
+      render json: {
+        message:"Sorry, task could not be edited",
+        errors: task.errors
+      }
+    end
   end
 
   def destroy

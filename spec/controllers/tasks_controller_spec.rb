@@ -36,6 +36,7 @@ RSpec.describe TasksController, type: :controller do
       get :edit, :format => :json, id: task.id
       expect(response).to be_success
     end
+
   end
 
   describe '#update'do
@@ -45,6 +46,7 @@ RSpec.describe TasksController, type: :controller do
       task.reload
       expect(task.description).to eq("new description")
     end
+
   end
 
   describe '#delete'do
