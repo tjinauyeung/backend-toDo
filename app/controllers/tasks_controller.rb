@@ -10,7 +10,14 @@ class TasksController < ApplicationController
   end
 
   def create
-    render json:{task: Task.create(task_params)}
+    if task=Task.create(task_params)
+    render json:{task: task}
+    else
+      render json: {
+        message: "Sorry, task could not be created",
+        errors: task.errors
+      }
+    end
   end
 
   def edit
