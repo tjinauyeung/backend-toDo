@@ -5,7 +5,7 @@ RSpec.describe Project, type: :model do
     expect(FactoryGirl.build(:project)).to be_valid
   end
 
-  it "is invalid without a title" do 
+  it "is invalid without a title" do
     expect(FactoryGirl.build(:project, title: nil)).to_not be_valid
   end
 end
