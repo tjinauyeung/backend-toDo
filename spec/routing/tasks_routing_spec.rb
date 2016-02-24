@@ -64,7 +64,7 @@ RSpec.describe TasksController, type: :routing do
 
     end
 
-    it "does not routes to #show" do
+    it "does not route to #show" do
       task
       expect(:get => "/projects/1/tasks/1").not_to be_routable
     end

@@ -10,6 +10,7 @@ class TasksController < ApplicationController
   end
 
   def create
+    puts task_params
     if task=Task.create(task_params)
     render json:{task: task}
     else
@@ -43,6 +44,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:description, :done)
+    params.require(:task).permit(:description, :done, :project_id)
   end
 end
