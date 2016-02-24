@@ -1,5 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a valid factory" do
+    expect(FactoryGirl.build(:task)).to be_valid
+  end
+
+  it "has 'false' as standard status for done property" do
+    task = FactoryGirl.create(:task)
+    expect(task.done).to eq(false)
+  end
+
+  it "is invalid without a status (done: true or false)" do
+    expect(FactoryGirl.build(:task, done: nil)).to_not be_valid
+  end
 end

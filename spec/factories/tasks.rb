@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :task do
-    description "this is a description"
+  factory :task do |f|
+    f.description "this is a description"
   end
 end
