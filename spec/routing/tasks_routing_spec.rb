@@ -8,19 +8,21 @@ RSpec.describe TasksController, type: :routing do
     it "routes to #index of projects" do
       expect(:get => "/projects").to route_to("projects#index")
     end
-#   it "routes to #index" do
-#       expect(:get => "/projects/:project_id/tasks").to route_to("tasks#index")
-#     end
-#
-#     it "routes to #create" do
-#       expect(:post => "/tasks").to route_to("tasks#create")
-#     end
-#
-#     it "routes to #edit" do
-#       task
-#       expect(:get => "/tasks/1/edit").to route_to("tasks#edit", id: '1')
-#
-#     end
+
+
+
+    it "routes to #index" do
+      expect(:get => "/projects/1/tasks").to route_to("tasks#index", project_id: '1')
+    end
+
+    it "routes to #create" do
+      expect(:post => "/projects/1/tasks").to route_to("tasks#create", project_id: '1')
+    end
+
+    it "routes to #edit" do
+      task
+      expect(:get => "/projects/1/tasks/1/edit").to route_to("tasks#edit", project_id:'1', id: '1')
+    end
 #
 #     it "routes put update" do
 #       task
