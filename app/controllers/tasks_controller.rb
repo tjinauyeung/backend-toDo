@@ -10,6 +10,7 @@ class TasksController < ApplicationController
   end
 
   def create
+    puts task_params
     if task=Task.create(task_params)
     render json:{task: task}
     else
