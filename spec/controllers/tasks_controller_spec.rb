@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe TasksController, type: :controller do
   let(:task) {Task.create(description: "this is a description")}
-  let(:invalid_description) do
-    { description: ""}
-  end
+
+
   describe '#index' do
     it "returns tasks index" do
       get :index, :format => :json
@@ -21,13 +20,13 @@ RSpec.describe TasksController, type: :controller do
 
   describe '#create'do
     it "creates task"do
-      post :create, :format =>:json, :task => task.attributes
-      expect{Task.create}.to change{Task.count}.by(1)
+    expect{
+       post :create, task: FactoryGirl.attributes_for(:task)
+     }.to change{Task.count}.by(1)
     end
 
-    it "fails to create task" do
-      post :create, :format =>:json, :task => {:description => "ha" * 500}
-      expect{Task.create}.to_not change{Task.count}
+    it "is invalid without a description" do
+       expect(FactoryGirl.build(:task, description:"")).to_not be_valid
     end
   end
 
