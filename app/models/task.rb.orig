@@ -1,7 +1,0 @@
-class Task < ActiveRecord::Base
-<<<<<<< HEAD
-  validates :description, presence: true
-=======
-  validates :done, inclusion: [true, false]
->>>>>>> master
-end
