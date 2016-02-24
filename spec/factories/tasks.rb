@@ -1,5 +1,7 @@
 FactoryGirl.define do
-  factory :task do |f|
-    f.description "this is a description"
+  factory :task do
+    description "this is a description"
+    done false
+    project
   end
 end

@@ -5,12 +5,12 @@ RSpec.describe Task, type: :model do
     expect(FactoryGirl.build(:task)).to be_valid
   end
 
-  it "has 'false' as standard status for done property" do
-    task = FactoryGirl.create(:task)
-    expect(task.done).to eq(false)
+  it "is invalid without a status" do
+    expect(FactoryGirl.build(:task, done: nil)).to_not be_valid
   end
 
-  it "is invalid without a status (done: true or false)" do
-    expect(FactoryGirl.build(:task, done: nil)).to_not be_valid
+  it "has 'false' as standard status for done" do
+    task = FactoryGirl.create(:task)
+    expect(task.done).to eq(false)
   end
 end
