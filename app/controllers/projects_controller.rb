@@ -43,9 +43,11 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    render json:{project: Project.find(params[:id])}
+    project=Project.find(params[:id])
+    tasks=project.tasks.order(id: :desc)
+    render json:{project: tasks}
   end
-  
+
   private
   def project_params
     params.require(:project).permit(:title, :description)
