@@ -5,5 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-tasks = Task.create([{description: "This needs doing", done: true},{description: "buy bread", done: false}])
+tasks = Task.create([{description: "This needs doing", done: true, project_id: "1"},{description: "buy bread", done: false, project_id: "1"}])
 Project.create( title: "First project", description: "This is a description of the first project." )
