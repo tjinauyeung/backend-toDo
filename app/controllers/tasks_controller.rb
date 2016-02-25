@@ -1,16 +1,19 @@
 class TasksController < ApplicationController
   def index
+    project=Project.find(params[:project_id])
     render json:{
-      tasks: Task.order(id: :desc)
+      tasks: project.tasks.order(id: :desc)
     }
   end
 
   def new
-    render json:{task: Task.new}
+    project=Project.find(params[:project_id])
+    render json:{task: project.tasks.new}
   end
 
   def create
-    if task=Task.create(task_params)
+    project=Project.find(params[:project_id])
+    if task=project.tasks.create(task_params)
     render json:{task: task}
     else
       render json: {
@@ -21,7 +24,8 @@ class TasksController < ApplicationController
   end
 
   def edit
-    render json:{task: Task.find(params[:id])}
+    project=Project.find(params[:project_id])
+    render json:{task: project.tasks.find(params[:id])}
   end
 
   def update
