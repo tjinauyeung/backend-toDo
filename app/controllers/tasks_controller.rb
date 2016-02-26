@@ -1,19 +1,20 @@
 class TasksController < ApplicationController
+  before_action :set_project
   def index
-    project=Project.find(params[:project_id])
     render json:{
-      tasks: project.tasks.order(id: :desc)
+      tasks: @project.tasks.order(id: :desc)
     }
   end
 
   def new
-    project=Project.find(params[:project_id])
-    render json:{task: project.tasks.new}
+    render json:{task: @project.tasks.new}
   end
 
   def create
-    project=Project.find(params[:project_id])
-    if task=project.tasks.create(task_params)
+    task=Task.new(task_params)
+    task.project=@project
+
+    if task.save
     render json:{task: task}
     else
       render json: {
@@ -24,14 +25,12 @@ class TasksController < ApplicationController
   end
 
   def edit
-    project=Project.find(params[:project_id])
-    task=project.tasks.find(params[:id])
+    task=@project.tasks.find(params[:id])
     render json:{task: task}
   end
 
   def update
-    project=Project.find(params[:project_id])
-    if task=project.tasks.find(params[:id])
+    if task=@project.tasks.find(params[:id])
     render json:{task: task.update(task_params)}
     else
       render json: {
@@ -42,13 +41,15 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    project=Project.find(params[:project_id])
-    task=project.tasks.find(params[:id])
+    task=@project.tasks.find(params[:id])
     task.destroy
     render json: { destroyed: true }
   end
   private
 
+  def set_project
+    @project=Project.find(params[:project_id])
+  end
   def task_params
     params.require(:task).permit(:description, :done, :project_id)
   end
