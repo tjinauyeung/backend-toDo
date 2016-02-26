@@ -10,6 +10,6 @@ projects=Project.create([{ title: "First project", description: "This is a descr
 tasks = Task.create([
   {description: "This needs doing", done: true, project_id: 1},
   {description: "buy bread", done: false, project_id: 1},
-  {description: "This needs doing", done: true, project_id: 2},
-  {description: "buy bread", done: false, project_id: 2},
+  {description: "This needs even more doing", done: true, project_id: 2},
+  {description: "lalalala", done: false, project_id: 2},
   ])
