@@ -44,8 +44,7 @@ class ProjectsController < ApplicationController
 
   def show
     project=Project.find(params[:id])
-    tasks=project.tasks.order(id: :desc)
-    render json:{project: tasks}
+    render json:{project: project}
   end
 
   private

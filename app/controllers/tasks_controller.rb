@@ -25,11 +25,13 @@ class TasksController < ApplicationController
 
   def edit
     project=Project.find(params[:project_id])
-    render json:{task: project.tasks.find(params[:id])}
+    task=project.tasks.find(params[:id])
+    render json:{task: task}
   end
 
   def update
-    if task=Task.find(params[:id])
+    project=Project.find(params[:project_id])
+    if task=project.tasks.find(params[:id])
     render json:{task: task.update(task_params)}
     else
       render json: {
@@ -40,7 +42,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    task=Task.find(params[:id])
+    project=Project.find(params[:project_id])
+    task=project.tasks.find(params[:id])
     task.destroy
     render json: { destroyed: true }
   end
