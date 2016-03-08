@@ -1,8 +1,7 @@
 class Backend::Application
   config.middleware.insert_before 0,  "Rack::Cors", debug: true, logger: (-> { Rails.logger }) do
     allow do
-      origins 'localhost:3000', 'ship-chandler-ferret-46502.bitballoon.com',
-        /\Ahttp:\/\/192\.168\.0\.\d{1,3}(:\d+)?\z/
+      origins 'localhost:3000', 'sentry-daisy-65516.bitballoon.com'
 
       resource '/cors',
         headers: :any,
